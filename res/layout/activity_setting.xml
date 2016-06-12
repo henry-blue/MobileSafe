@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.mobilesafe.app"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
@@ -8,9 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#17cd6e"
+        android:background="#177ab1"
         android:orientation="vertical" >
 
         <TextView
@@ -19,25 +18,22 @@
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="手机管家"
+            android:text="设置中心"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/home" />
+            android:src="@drawable/settings" />
     </LinearLayout>
 
-    <GridView
-        android:id="@+id/gv_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:horizontalSpacing="10dp"
-        android:numColumns="3"
-        android:verticalSpacing="10dp" />
+    <ui.SettingItemView
+        android:id="@+id/siv_update"
+        app:title="软件更新提醒"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

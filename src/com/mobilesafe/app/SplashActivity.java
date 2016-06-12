@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -29,6 +30,11 @@ import android.view.animation.AlphaAnimation;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * 启动界面
+ * @author Administrator
+ *
+ */
 public class SplashActivity extends Activity {
 	protected static final String LOG_TAG = "SplashActivity";
 
@@ -48,6 +54,8 @@ public class SplashActivity extends Activity {
 	private String mApkUrl;
 	//显示下载更新包进度
 	private TextView mShowUpdate;
+	
+	private SharedPreferences sp;
 	
 	@SuppressLint("HandlerLeak")
 	private Handler mHandler = new Handler() {
@@ -86,9 +94,21 @@ public class SplashActivity extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_splash);
 		mShowUpdate = (TextView) findViewById(R.id.tv_update);
+		sp = getSharedPreferences("config", MODE_PRIVATE);
 		
-		//检查是否需要升级
-		checkUpdate();
+		boolean isUpdate = sp.getBoolean("update", false);
+		if (isUpdate) {
+			//检查是否需要升级
+			checkUpdate();
+		} else {
+			mHandler.postDelayed(new Runnable() {
+				
+				@Override
+				public void run() {
+					enterMainPage();
+				}
+			}, 2000);
+		}
 		
 		//设置动画
 		AlphaAnimation aa = new AlphaAnimation(0.2f, 1.0f);

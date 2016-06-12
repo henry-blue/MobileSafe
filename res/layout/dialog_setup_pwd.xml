@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:background="#17cd6e"
+        android:gravity="center"
+        android:text="设置密码"
+        android:textColor="#ffffff"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/et_setup_pwd"
+        android:inputType="textPassword"
+        android:numeric="integer"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:maxLength="10"
+        android:hint="请输入6-11位数字密码" />
+
+    <EditText
+        android:id="@+id/et_confirm_pwd"
+        android:inputType="textPassword"
+        android:numeric="integer"
+        android:lines="1"
+        android:maxLength="11"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:hint="请再次输入密码" />
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/bt_cancel"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/dialog_button"
+            android:textSize="18dp"
+            android:textColor="#ffffff"
+            android:text="取消" />
+
+        <Button
+            android:id="@+id/bt_ok"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="5dp"
+            android:textSize="18dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/dialog_button"
+            android:text="确定" />
+    </LinearLayout>
+
+</LinearLayout>

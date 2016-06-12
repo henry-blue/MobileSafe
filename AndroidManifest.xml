@@ -2,13 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mobilesafe.app"
     android:versionCode="1"
-    android:versionName="1.0" xmlns:tools="http://schemas.android.com/tools">
+    android:versionName="2.0" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="16" tools:ignore="OldTargetApi"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -26,6 +29,18 @@
             </intent-filter>
         </activity>
         <activity android:name="com.mobilesafe.app.MainActivity"/>
+        <activity android:name="com.mobilesafe.app.SettingActivity"/>
+        <activity android:name="com.mobilesafe.app.MobileSafeActivity"/>
+        <activity android:name="com.mobilesafe.app.Setup1Activity"/>
+        <activity android:name="com.mobilesafe.app.Setup2Activity"/>
+        <activity android:name="com.mobilesafe.app.Setup3Activity"/>
+        <activity android:name="com.mobilesafe.app.Setup4Activity"/>
+        <activity android:name="com.mobilesafe.app.SelectContactActivity"/>
+		<receiver android:name="reciver.BootCompleteReceiver">
+		    <intent-filter>
+		        <action android:name="android.intent.action.BOOT_COMPLETED"/>
+		    </intent-filter>
+		</receiver>        
     </application>
 
 </manifest>
