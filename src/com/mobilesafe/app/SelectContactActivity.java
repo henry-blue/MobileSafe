@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +39,19 @@ public class SelectContactActivity extends Activity {
         contactInfo = getContactInfo();
         MyAdapter adapter = new MyAdapter();
         mContactListView.setAdapter(adapter);
+        mContactListView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position,
+					long id) {
+				String phone = contactInfo.get(position).get("number");
+				Intent data = new Intent();
+				data.putExtra("phone", phone);
+				setResult(0, data);
+				//退出当前页面
+				finish();
+			}
+		});
     }
 
     private List<Map<String, String>> getContactInfo() {

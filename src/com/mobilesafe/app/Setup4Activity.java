@@ -1,24 +1,41 @@
 package com.mobilesafe.app;
 
+import ui.SettingItemView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.view.Window;
+import android.view.View;
+import android.view.View.OnClickListener;
 
 /**
  * 设置完成界面
+ * 
  * @author Administrator
- *
+ * 
  */
 public class Setup4Activity extends BaseSetupActivity {
 	private SharedPreferences sp;
+	private SettingItemView itemView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup4);
 		sp = getSharedPreferences("config", MODE_PRIVATE);
+		itemView = (SettingItemView) findViewById(R.id.siv_safe);
+
+		itemView.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (itemView.isChecked()) {
+					itemView.setChecked(false);
+				} else {
+					itemView.setChecked(true);
+				}
+			}
+		});
 	}
 
 	@Override

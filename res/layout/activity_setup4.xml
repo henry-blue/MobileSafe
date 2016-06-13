@@ -29,7 +29,7 @@
     </FrameLayout>
 
     <ui.SettingItemView
-        android:id="@+id/siv_safephone"
+        android:id="@+id/siv_safe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:title="开启防盗保护" />
