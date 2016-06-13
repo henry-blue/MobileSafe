@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res/com.mobilesafe.app"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333333"
+    android:background="#404040"
     android:orientation="vertical" >
 
     <TextView
@@ -14,11 +14,10 @@
         android:text="选择联系人"
         android:textColor="#ffffff"
         android:textSize="20sp" />
-    
-    <ListView 
+
+    <ListView
         android:id="@+id/lv_select_contact"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

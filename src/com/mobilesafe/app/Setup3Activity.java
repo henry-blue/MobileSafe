@@ -19,7 +19,6 @@ public class Setup3Activity extends BaseSetupActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_setup3);
 		bt_select_contact = (Button) findViewById(R.id.bt_select_contact);
 		bt_select_contact.setOnClickListener(new OnClickListener() {

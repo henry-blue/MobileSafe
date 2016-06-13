@@ -17,7 +17,6 @@ public class Setup4Activity extends BaseSetupActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_setup4);
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 	}
