@@ -8,7 +8,6 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.Toast;
 
 /**
@@ -57,7 +56,7 @@ public class Setup2Activity extends BaseSetupActivity {
 		//判断是否绑定sim卡
 		String sim = sp.getString("sim", null);
 		if (TextUtils.isEmpty(sim)) {
-			Toast.makeText(getApplicationContext(), "请绑定sim卡", 0).show();
+			Toast.makeText(getApplicationContext(), "请绑定sim卡", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		Intent intent = new Intent(Setup2Activity.this, Setup3Activity.class);

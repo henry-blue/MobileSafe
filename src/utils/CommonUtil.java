@@ -12,10 +12,11 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 public class CommonUtil {
 
 	private static final int CONNECT_SUCESS = 200;
-
+    
 	// 连接网络请求数据
 	public static void sendHttpRequest(final String address,
 			final HttpCallBackListener listener) {

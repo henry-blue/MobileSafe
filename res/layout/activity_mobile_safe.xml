@@ -56,6 +56,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv_safe_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -86,6 +87,8 @@
             android:textSize="18sp" />
 
         <CheckBox
+            android:clickable="false"
+            android:id="@+id/cb_isopen_protect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

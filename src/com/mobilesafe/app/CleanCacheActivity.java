@@ -135,6 +135,8 @@ public class CleanCacheActivity extends BaseAcitivity implements
 			}
 			break;
 		case R.id.bt_finish_clean_cache:
+			ll_container.setBackgroundColor(Color.parseColor("#404040"));
+			ll_container.removeAllViews();
 			finish();
 			break;
 		default:

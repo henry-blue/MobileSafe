@@ -24,7 +24,10 @@ public class Setup4Activity extends BaseSetupActivity {
 		setContentView(R.layout.activity_setup4);
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		itemView = (SettingItemView) findViewById(R.id.siv_safe);
-
+		
+		boolean protecting = sp.getBoolean("protecting", false);
+		itemView.setChecked(protecting);
+		
 		itemView.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -34,6 +37,9 @@ public class Setup4Activity extends BaseSetupActivity {
 				} else {
 					itemView.setChecked(true);
 				}
+				Editor edit = sp.edit();
+				edit.putBoolean("protecting", itemView.isChecked());
+				edit.commit();
 			}
 		});
 	}

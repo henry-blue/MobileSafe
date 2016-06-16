@@ -3,7 +3,6 @@ package com.mobilesafe.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 
 /**
  * 手机防盗功能界面

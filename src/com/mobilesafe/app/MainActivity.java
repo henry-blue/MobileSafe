@@ -88,13 +88,15 @@ public class MainActivity extends Activity {
                 case function.MOBILE_SETTING: // 进入设置中心
                     enterIndexPage(SettingActivity.class);
                     break;
-                case function.MOBILE_SAFE:
-                    // showLoastFindDialog();
-                    enterIndexPage(MobileSafeActivity.class);
+                case function.MOBILE_SAFE:   //进入手机防盗
+                     showLoastFindDialog();
                     break;
-                case function.SYS_OPTIMIZE:
+                case function.SYS_OPTIMIZE: //进入清理缓存
                     enterIndexPage(CleanCacheActivity.class);
                     break;
+                case function.ATOOLS: //进入高级工具
+                	enterIndexPage(AToolsActivity.class);
+                	break;
                 default:
                     break;
                 }
