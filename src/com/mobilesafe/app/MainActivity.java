@@ -97,6 +97,9 @@ public class MainActivity extends Activity {
                 case function.ATOOLS: //进入高级工具
                 	enterIndexPage(AToolsActivity.class);
                 	break;
+                case function.CALL_MSG_SAFE:
+                	enterIndexPage(CallSmsSafeActivity.class);
+                	break;
                 default:
                     break;
                 }

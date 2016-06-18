@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:atools="http://schemas.android.com/apk/res/com.mobilesafe.app"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
@@ -30,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="高级工具"
+                android:text="号码归属地查询"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -40,15 +39,35 @@
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/atools" />
+            android:src="@drawable/find_number" />
     </LinearLayout>
-    
-    <ui.AtoolsItemView
-        android:id="@+id/aiv_find_number"
+
+    <EditText
+        android:id="@+id/et_get_input_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:hint="请输入查询的号码"
+        android:layout_margin="8dp"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/bt_reault"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        atools:content="号码归属地查询"
-        atools:drawable_left="@android:drawable/ic_menu_camera" />
+        android:layout_margin="8dp"
+        android:text="查询"
+        android:textColor="#ffffff" />
 
+    <TextView
+        android:id="@+id/tv_show_result"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:layout_margin="8dp"
+        android:textSize="20sp" />
 
 </LinearLayout>

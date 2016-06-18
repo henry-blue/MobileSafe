@@ -6,23 +6,21 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mobilesafe.app.R;
 
-public class SettingItemView extends RelativeLayout {
+public class SettingItemView2 extends RelativeLayout {
 
-	private CheckBox cb_status;
 	private TextView tv_title;
 
-	public SettingItemView(Context context) {
+	public SettingItemView2(Context context) {
 		super(context);
 		initView(context);
 	}
 
-	public SettingItemView(Context context, AttributeSet attrs) {
+	public SettingItemView2(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initView(context);
 		setAttributeSet(context, attrs);
@@ -34,8 +32,7 @@ public class SettingItemView extends RelativeLayout {
 	 * @param context
 	 */
 	private void initView(Context context) {
-		View.inflate(context, R.layout.setting_item_view, this);
-		cb_status = (CheckBox) this.findViewById(R.id.cb_isupdate);
+		View.inflate(context, R.layout.setting_item_view2, this);
 		tv_title = (TextView) this.findViewById(R.id.tv_update);
 	}
 
@@ -60,19 +57,6 @@ public class SettingItemView extends RelativeLayout {
 		tv_title.setText(title);
 	}
 
-	/**
-	 * 判断checkbox是否获得焦点
-	 */
-	public boolean isChecked() {
-		return cb_status.isChecked();
-	}
-
-	/**
-	 * 设置checkbox选中状态
-	 */
-	public void setChecked(boolean checked) {
-		cb_status.setChecked(checked);
-	}
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {

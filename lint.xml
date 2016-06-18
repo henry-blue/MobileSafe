@@ -5,6 +5,10 @@
         <ignore path="res/layout/activity_main.xml" />
         <ignore path="res/layout/activity_setting.xml" />
         <ignore path="res/layout/contact_item.xml" />
+        <ignore path="res/layout/setting_item_view2.xml" />
+    </issue>
+    <issue id="HardcodedText">
+        <ignore path="res/layout/activity_setting.xml" />
     </issue>
     <issue id="Orientation">
         <ignore path="res/layout/cleancache_item_view.xml" />

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:atools="http://schemas.android.com/apk/res/com.mobilesafe.app"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
@@ -9,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="#b500b5"
+        android:background="#b3d030"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -30,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="高级工具"
+                android:text="通讯卫士"
                 android:textColor="#ffffff"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -40,15 +39,33 @@
             android:layout_height="55dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:src="@drawable/atools" />
+            android:src="@drawable/callmsgsafe" />
     </LinearLayout>
-    
-    <ui.AtoolsItemView
-        android:id="@+id/aiv_find_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        atools:content="号码归属地查询"
-        atools:drawable_left="@android:drawable/ic_menu_camera" />
 
+    <TextView
+        android:id="@+id/add_black_number"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/add"
+        android:gravity="center_vertical"
+        android:text="添加黑名单号码"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.2dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#88999999" />
+
+    <ListView
+        android:id="@+id/lv_call_sms_safe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp" />
 
 </LinearLayout>

@@ -17,6 +17,13 @@ public class BaseAcitivity extends Activity {
      */
     public void backOut(View view) {
         finish();
+        overridePendingTransition(R.anim.tran_pre_in, R.anim.tran_pre_out);
+    }
+    
+    @Override
+    public void onBackPressed() {
+    	super.onBackPressed();
+    	overridePendingTransition(R.anim.tran_pre_in, R.anim.tran_pre_out);
     }
 
 }

@@ -1,6 +1,9 @@
 package com.mobilesafe.app;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import net.tsz.afinal.FinalHttp;
@@ -94,6 +97,9 @@ public class SplashActivity extends Activity {
 		mShowUpdate = (TextView) findViewById(R.id.tv_update);
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		
+		//将电话号码数据库copy到/data/data/package/files/
+		copyDB();
+		
 		boolean isUpdate = sp.getBoolean("update", false);
 		if (isUpdate) {
 			//检查是否需要升级
@@ -115,6 +121,28 @@ public class SplashActivity extends Activity {
 		view.startAnimation(aa);
 	}
 	
+	//将电话号码数据库copy到/data/data/package/files/
+	private void copyDB() {
+		File file = new File(getFilesDir(), "address.db");
+		if (file.exists() && file.length() > 0) {
+			return;
+		}
+
+		try {
+			InputStream is = getAssets().open("address.db");
+			FileOutputStream fos = new FileOutputStream(file);
+			byte[] buffer = new byte[1024];
+			int len = 0;
+			while((len = is.read(buffer)) != -1) {
+				fos.write(buffer, 0, len);
+			}
+			is.close();
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	/**
 	 * 显示升级对话框
 	 */
