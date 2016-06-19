@@ -50,11 +50,17 @@
         app:title="软件更新提醒" />
 
     <ui.SettingItemView
+        android:id="@+id/siv_callsms_safe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:title="开启黑名单拦截" />
+
+    <ui.SettingItemView
         android:id="@+id/siv_show_phone_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:title="来电显示" />
-    
+
     <ui.SettingItemView2
         android:id="@+id/siv_change_bg"
         android:layout_width="wrap_content"

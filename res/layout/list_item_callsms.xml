@@ -23,5 +23,13 @@
         android:text="拦截模式"
         android:textColor="#ffffff"
         android:textSize="12sp" />
+    
+    <ImageView 
+        android:id="@+id/iv_delete_number"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/clear"/>
 
 </RelativeLayout>

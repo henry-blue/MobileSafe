@@ -1,6 +1,7 @@
 package com.mobilesafe.app;
 
 import service.AddressService;
+import service.CallSmsSafeService;
 import ui.SettingItemView;
 import ui.SettingItemView2;
 import utils.ServiceUtils;
@@ -25,12 +26,15 @@ public class SettingActivity extends BaseAcitivity {
 	private SettingItemView siv_phone_location;
 	// 设置是否软件更新
 	private SettingItemView siv_update;
+	// 开启黑名单号码拦截
+	private SettingItemView siv_blacknumber;
 	//设置来电显示背景
 	private SettingItemView2 siv_change_bg;
 	
 	private SharedPreferences sp;
 
 	private Intent showAddress;
+	private Intent callSmsSafeIntent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +56,8 @@ public class SettingActivity extends BaseAcitivity {
 		boolean isServiceRunning = ServiceUtils.isServiceRuning(
 				SettingActivity.this, "service.AddressService");
 		siv_phone_location.setChecked(isServiceRunning);
-
+		
+		//开启软件更新提醒
 		siv_update.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -69,7 +74,7 @@ public class SettingActivity extends BaseAcitivity {
 				edit.commit();
 			}
 		});
-
+		//开启来电显示
 		siv_phone_location.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -86,7 +91,7 @@ public class SettingActivity extends BaseAcitivity {
 				edit.commit();
 			}
 		});
-		
+		//设置归属地背景风格
 		siv_change_bg = (SettingItemView2) findViewById(R.id.siv_change_bg);
 		siv_change_bg.setOnClickListener(new OnClickListener() {
 			
@@ -112,6 +117,24 @@ public class SettingActivity extends BaseAcitivity {
 				builder.show();
 			}
 		});
+		
+		//开启黑名单设置
+		siv_blacknumber = (SettingItemView) findViewById(R.id.siv_callsms_safe);
+		callSmsSafeIntent = new Intent(SettingActivity.this, CallSmsSafeService.class);
+		siv_blacknumber.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// 判断是否选中
+				if (siv_blacknumber.isChecked()) {
+					siv_blacknumber.setChecked(false);
+					stopService(callSmsSafeIntent);
+				} else {
+					siv_blacknumber.setChecked(true);
+					startService(callSmsSafeIntent);
+				}
+			}
+		});
 	}
 
 	@Override
@@ -120,6 +143,10 @@ public class SettingActivity extends BaseAcitivity {
 		boolean isServiceRunning = ServiceUtils.isServiceRuning(
 				SettingActivity.this, "service.AddressService");
 		siv_phone_location.setChecked(isServiceRunning);
+		
+		boolean isCallSmsServiceRunning = ServiceUtils.isServiceRuning(
+				SettingActivity.this, "service.CallSmsSafeService");
+		siv_blacknumber.setChecked(isCallSmsServiceRunning);
 	}
 
 }

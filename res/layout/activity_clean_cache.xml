@@ -78,7 +78,7 @@
             android:layout_height="35dp"
             android:textColor="#ffffff"
             android:layout_gravity="bottom|center"
-            android:background="@drawable/button"
+            android:background="@drawable/button_clean"
             android:text="立即清理" />
     </FrameLayout>
 

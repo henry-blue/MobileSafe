@@ -36,12 +36,26 @@ public class BlackNumberDao {
 		return result;
  	}
 	
+	//查询黑名单号码的拦截模式
+	public String findMode(String number) {
+		String result = null;
+		SQLiteDatabase db = helper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("select mode from blacknumber where number=?", new String[]{number});
+		if (cursor.moveToNext()) {
+			result = cursor.getString(0);
+		}
+		cursor.close();
+		db.close();
+		return result;
+ 	}
+	
+	
 	//查询所有黑名单号码
 	public List<BlackNumberInfo> findAll() {
 		List<BlackNumberInfo> result = new ArrayList<BlackNumberInfo>();
 		
 		SQLiteDatabase db = helper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("select number,mode from blacknumber", null);
+		Cursor cursor = db.rawQuery("select number,mode from blacknumber order by _id desc", null);
 		while (cursor.moveToNext()) {
 			BlackNumberInfo info = new BlackNumberInfo();
 			String number = cursor.getString(0);
