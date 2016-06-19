@@ -10,6 +10,7 @@
     <declare-styleable name="AtoolsItemView">
         <attr name="content" format="string" />
         <attr name="drawable_left" format="reference"/>
+        <attr name="show_arrow" format="boolean"/>
     </declare-styleable>
 
 </resources>

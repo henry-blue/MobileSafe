@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +41,10 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 
 	private TextView addBlackNumber;
 	private MyAdapter adapter;
+	private LinearLayout ll_loading;
+	private int offset = 0;
+	protected int maxNumber = 20;
+	protected boolean isLoadingDataEnd = false; // 标记数据加载完成
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +52,45 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 		setContentView(R.layout.activity_callsmsafe);
 		call_sms_safe = (ListView) findViewById(R.id.lv_call_sms_safe);
 		addBlackNumber = (TextView) findViewById(R.id.add_black_number);
+		ll_loading = (LinearLayout) findViewById(R.id.ll_loading);
+
 		addBlackNumber.setOnClickListener(this);
 
 		dao = new BlackNumberDao(CallSmsSafeActivity.this);
-		infos = dao.findAll();
-		adapter = new MyAdapter();
-		call_sms_safe.setAdapter(adapter);
+		// 防止数据加载时间过长
+		fillData();
 
+		call_sms_safe.setOnScrollListener(new ListView.OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				switch (scrollState) {
+				case OnScrollListener.SCROLL_STATE_IDLE:
+					// 判断当前listview的滚动位置
+					int lastposition = call_sms_safe.getLastVisiblePosition();
+					if (!isLoadingDataEnd && lastposition == (infos.size() - 1)) {
+						offset += maxNumber;
+						fillData();
+					}
+					break;
+				case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
+
+					break;
+				case OnScrollListener.SCROLL_STATE_FLING:
+
+					break;
+				default:
+					break;
+				}
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem,
+					int visibleItemCount, int totalItemCount) {
+			}
+		});
+
+		// 更新点击的某个黑名单的拦截模式
 		call_sms_safe.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -60,6 +99,44 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 				ShowBlackNumberDialog("update", position);
 			}
 		});
+	}
+
+	private void fillData() {
+		ll_loading.setVisibility(View.VISIBLE);
+		new Thread() {
+			public void run() {
+				if (infos == null) {
+					infos = dao.findPart(offset, maxNumber);
+				} else {// 已经加载数据
+					List<BlackNumberInfo> part = dao
+							.findPart(offset, maxNumber);
+					if (part.size() <= 0) { // 数据加载完成
+						isLoadingDataEnd = true;
+					} else {
+						infos.addAll(part);
+					}
+				}
+				runOnUiThread(new Runnable() {
+
+					@Override
+					public void run() {
+						ll_loading.setVisibility(View.GONE);
+						if (isLoadingDataEnd) {
+							Toast.makeText(CallSmsSafeActivity.this, "没有更多数据",
+									Toast.LENGTH_SHORT).show();
+							return;
+						}
+						if (adapter == null) {
+							adapter = new MyAdapter();
+							call_sms_safe.setAdapter(adapter);
+						} else {
+							adapter.notifyDataSetChanged();
+						}
+
+					}
+				});
+			};
+		}.start();
 	}
 
 	@Override
@@ -82,8 +159,11 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 
 	/**
 	 * 显示对话框
-	 * @param changeMode 显示对话框的功能-更新,添加
-	 * @param pos 点击的位置
+	 * 
+	 * @param changeMode
+	 *            显示对话框的功能-更新,添加
+	 * @param pos
+	 *            点击的位置
 	 */
 	private void ShowBlackNumberDialog(final String changeMode, final int pos) {
 		AlertDialog.Builder builder = new Builder(CallSmsSafeActivity.this);
@@ -97,7 +177,7 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 		cb_sms = (CheckBox) view.findViewById(R.id.cb_sms_limit);
 		bt_ok = (Button) view.findViewById(R.id.bt_ok);
 		bt_cancel = (Button) view.findViewById(R.id.bt_cancel);
-		
+
 		if (changeMode.equals("update")) {
 			blacknumber_title.setText("修改黑名单号码");
 			et_blacknumber.setKeyListener(null);
@@ -153,6 +233,7 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 
 	/**
 	 * 添加黑名单号码
+	 * 
 	 * @param number
 	 * @param mode
 	 */
@@ -168,6 +249,7 @@ public class CallSmsSafeActivity extends BaseAcitivity implements
 
 	/**
 	 * 更新黑名单号码的拦截模式
+	 * 
 	 * @param number
 	 * @param mode
 	 * @param location

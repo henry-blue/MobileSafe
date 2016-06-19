@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import android.widget.TextView;
 public class AtoolsItemView extends RelativeLayout {
 
 	private TextView tv_index;
+	private ImageView iv_goon;
 	
 	public AtoolsItemView(Context context) {
 		super(context);
@@ -34,6 +36,7 @@ public class AtoolsItemView extends RelativeLayout {
 	private void initView(Context context) {
 		View.inflate(context, R.layout.atools_item_view, this);
 		tv_index = (TextView) this.findViewById(R.id.tv_index);
+		iv_goon = (ImageView) this.findViewById(R.id.iv_goon);
 	}
 	
 	private void setAttributeSet(Context context, AttributeSet attrs) {
@@ -46,8 +49,16 @@ public class AtoolsItemView extends RelativeLayout {
 		if (left != null) {
 			setDrawable(left);
 		}
+		final boolean isShowArrow = typeArray.getBoolean(R.styleable.AtoolsItemView_show_arrow, true);
+		if (!isShowArrow) {
+			hideArrowRight();
+		}
 		
 		typeArray.recycle();
+	}
+
+	private void hideArrowRight() {
+		iv_goon.setVisibility(View.GONE);
 	}
 
 	private void setTitle(String title) {
@@ -55,9 +66,9 @@ public class AtoolsItemView extends RelativeLayout {
 	}
 	
 	private void setDrawable(Drawable left) {
-		left.setBounds(0, 0, left.getMinimumWidth(), 
-				left.getMinimumHeight()); 
+		left.setBounds(0, 0, left.getMinimumWidth(), left.getMinimumHeight()); 
 		tv_index.setCompoundDrawables(left, null, null, null);
+		tv_index.setCompoundDrawablePadding(8);
 	}
 	
 	

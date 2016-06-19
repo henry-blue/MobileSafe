@@ -48,7 +48,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         atools:content="号码归属地查询"
-        atools:drawable_left="@android:drawable/ic_menu_camera" />
+        atools:drawable_left="@drawable/select" />
 
+     <ui.AtoolsItemView
+        android:id="@+id/aiv_sms_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        atools:content="短信备份"
+        atools:show_arrow="false"
+        atools:drawable_left="@drawable/backup" />
+    
+      <ui.AtoolsItemView
+        android:id="@+id/aiv_sms_restore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        atools:content="短信还原"
+        atools:show_arrow="false"
+        atools:drawable_left="@drawable/restore" />
+     
 
 </LinearLayout>

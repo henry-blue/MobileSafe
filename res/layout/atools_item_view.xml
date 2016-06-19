@@ -11,6 +11,7 @@
         android:layout_margin="8dp"
         android:gravity="center_vertical"
         android:textColor="#ffffff"
+        android:layout_marginStart="8dp"
         android:textSize="18sp" />
 
     <ImageView
@@ -25,10 +26,10 @@
     
       <View
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="0.2dp"
         android:layout_below="@id/tv_index"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="10dp"
-        android:background="#999999" />
+        android:background="#88999999" />
 
 </RelativeLayout>

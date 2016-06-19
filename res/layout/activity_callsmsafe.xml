@@ -62,10 +62,34 @@
         android:layout_marginRight="10dp"
         android:background="#88999999" />
 
-    <ListView
-        android:id="@+id/lv_call_sms_safe"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp" />
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/ll_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在加载数据..."
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_call_sms_safe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp" />
+    </FrameLayout>
 
 </LinearLayout>
