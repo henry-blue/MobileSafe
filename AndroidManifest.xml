@@ -63,7 +63,7 @@
         <activity android:name="utils.deviceUtil" />
         <activity android:name="com.mobilesafe.app.NumberAddressQueryActivity" />
         <activity android:name="com.mobilesafe.app.CallSmsSafeActivity" />
-
+		<activity android:name="com.mobilesafe.app.AppManagerActivity"/>
         <service android:name="service.GPSService" />
         <service android:name="service.AddressService" />
         <service android:name="service.CallSmsSafeService" />
