@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333333"
+    android:background="#424242"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -44,8 +44,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="#88999999" />
+        android:layout_height="0.2dp"
+        android:background="#44ffffff" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -58,7 +58,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="2dp"
-            android:text="内存可用"
             android:textColor="#ffffff" />
 
         <TextView
@@ -67,7 +66,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="2dp"
             android:layout_alignParentRight="true"
-            android:text="SD卡可用"
             android:textColor="#ffffff" />
     </RelativeLayout>
 

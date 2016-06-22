@@ -129,14 +129,13 @@ public class CleanCacheActivity extends BaseAcitivity implements
 		switch (view.getId()) {
 		case R.id.bt_clean_cache:
 			if (isHaveCahce) {
+			    bt_cleanCaches.setVisibility(View.GONE);
 				CleanAllCaches();
 			} else {
 				finish();
 			}
 			break;
 		case R.id.bt_finish_clean_cache:
-			ll_container.setBackgroundColor(Color.parseColor("#404040"));
-			ll_container.removeAllViews();
 			finish();
 			break;
 		default:
@@ -159,10 +158,9 @@ public class CleanCacheActivity extends BaseAcitivity implements
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
-				return;
 			}
 		}
+        showFinishCleanCache();
 	}
 
 	private class MyDataObserver extends IPackageStatsObserver.Stub {
@@ -220,14 +218,13 @@ public class CleanCacheActivity extends BaseAcitivity implements
 			runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					scan_state.setText("缓存清理成功");
 					cacheInfo.clear();
 					adapter.notifyDataSetChanged();
-					bt_cleanCaches.setVisibility(View.GONE);
-					showFinishCleanCache();
 				}
 			});
 		}
+		
+		
 
 	}
 

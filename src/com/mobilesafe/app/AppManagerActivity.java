@@ -109,13 +109,13 @@ public class AppManagerActivity extends BaseAcitivity {
 			if (position == 0) {
 				TextView tv = new TextView(AppManagerActivity.this);
 				tv.setTextColor(Color.WHITE);
-				tv.setBackgroundColor(Color.parseColor("#222222"));
+				tv.setBackgroundColor(Color.parseColor("#212121"));
 				tv.setText("用户程序 ( " + userInfos.size() + " )");
 				return tv;
 			} else if (position == (userInfos.size() + 1)) {
 				TextView tv = new TextView(AppManagerActivity.this);
 				tv.setTextColor(Color.WHITE);
-				tv.setBackgroundColor(Color.parseColor("#222222"));
+				tv.setBackgroundColor(Color.parseColor("#212121"));
 				tv.setText("系统程序 ( " + sysInfos.size() + " )");
 				return tv;
 			} else if (position <= userInfos.size()) { //用户程序

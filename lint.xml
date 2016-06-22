@@ -8,6 +8,7 @@
         <ignore path="res/layout/setting_item_view2.xml" />
     </issue>
     <issue id="HardcodedText">
+        <ignore path="res/layout/activity_select_contact.xml" />
         <ignore path="res/layout/activity_setting.xml" />
     </issue>
     <issue id="Orientation">

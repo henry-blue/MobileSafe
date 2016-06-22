@@ -26,14 +26,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/cache_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -42,6 +42,6 @@
         android:layout_height="1dp"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="10dp"
-        android:background="#88ffffff" />
+        android:background="#88999999" />
 
 </LinearLayout>

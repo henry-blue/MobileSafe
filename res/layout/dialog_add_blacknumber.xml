@@ -9,7 +9,7 @@
         android:id="@+id/tv_blacknumber_title"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:background="#17cd6e"
+        android:background="#259b24"
         android:gravity="center"
         android:text="设置黑名单号码"
         android:textColor="#ffffff"

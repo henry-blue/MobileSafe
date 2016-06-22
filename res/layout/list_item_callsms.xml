@@ -19,9 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_black_number"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="2dp"
         android:text="拦截模式"
-        android:textColor="#ffffff"
+        android:textColor="#88ffffff"
         android:textSize="12sp" />
     
     <ImageView 
