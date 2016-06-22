@@ -93,10 +93,17 @@
         </LinearLayout>
 
         <ListView
+            android:overScrollMode="never"
             android:fastScrollEnabled="true"
             android:id="@+id/lv_my_apps"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+        <TextView 
+            android:id="@+id/tv_show_app_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:background="#212121" />
     </FrameLayout>
 
 </LinearLayout>

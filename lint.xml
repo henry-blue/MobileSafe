@@ -5,6 +5,7 @@
         <ignore path="res/layout/activity_main.xml" />
         <ignore path="res/layout/activity_setting.xml" />
         <ignore path="res/layout/contact_item.xml" />
+        <ignore path="res/layout/popup_app_item.xml" />
         <ignore path="res/layout/setting_item_view2.xml" />
     </issue>
     <issue id="HardcodedText">
@@ -16,5 +17,6 @@
     </issue>
     <issue id="UseCompoundDrawables">
         <ignore path="res/layout/contact_item.xml" />
+        <ignore path="res/layout/popup_app_item.xml" />
     </issue>
 </lint>
