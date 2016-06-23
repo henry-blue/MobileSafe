@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_activity_title_height" >160dp</dimen>
+    <dimen name="main_activity_title_textsize" >15sp</dimen>
+    <dimen name="main_activity_gridview_item_padding">13dp</dimen>
+</resources>

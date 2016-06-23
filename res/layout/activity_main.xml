@@ -5,9 +5,9 @@
     android:background="#424242"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="@dimen/main_activity_title_height"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="#17cd6e"
@@ -18,18 +18,18 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:text="手机管家"
             android:textColor="#ffffff"
-            android:textSize="15sp" />
+            android:textSize="@dimen/main_activity_title_textsize" />
 
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:src="@drawable/home" />
-    </LinearLayout>
+    </RelativeLayout>
 
     <GridView
         android:id="@+id/gv_list"

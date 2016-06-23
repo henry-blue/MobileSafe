@@ -5,6 +5,7 @@
         <ignore path="res/layout/activity_main.xml" />
         <ignore path="res/layout/activity_setting.xml" />
         <ignore path="res/layout/contact_item.xml" />
+        <ignore path="res/layout/list_item_main.xml" />
         <ignore path="res/layout/popup_app_item.xml" />
         <ignore path="res/layout/setting_item_view2.xml" />
     </issue>
@@ -14,9 +15,11 @@
     </issue>
     <issue id="Orientation">
         <ignore path="res/layout/cleancache_item_view.xml" />
+        <ignore path="res/layout/list_item_appinfo.xml" />
     </issue>
     <issue id="UseCompoundDrawables">
         <ignore path="res/layout/contact_item.xml" />
+        <ignore path="res/layout/list_item_main.xml" />
         <ignore path="res/layout/popup_app_item.xml" />
     </issue>
 </lint>

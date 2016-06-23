@@ -4,14 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:padding="13dp">
+    android:padding="@dimen/main_activity_gridview_item_padding">
 
     <ImageView
         android:id="@+id/iv_itemimage"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_launcher" />
+        android:layout_gravity="center" />
 
     <TextView
         android:id="@+id/tv_itemname"
@@ -20,7 +19,6 @@
         android:layout_gravity="bottom|center_horizontal"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="12345"
         android:textColor="#ffffff"
         android:textSize="12sp" />
 
