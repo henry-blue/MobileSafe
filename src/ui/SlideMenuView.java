@@ -62,10 +62,11 @@ public class SlideMenuView extends HorizontalScrollView {
                 int scrollX = getScrollX();
                 if (scrollX >= mHalfMenuWidth) {
                     scrollTo(mScreenWidth + mMenuWidth, 0);
+                    return false;
                 } else {
                     scrollTo(0, 0);
+                    return false;
                 }
-                break;
             default:
                 break;
         }

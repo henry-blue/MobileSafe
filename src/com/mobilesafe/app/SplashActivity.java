@@ -18,9 +18,11 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -100,6 +102,9 @@ public class SplashActivity extends Activity {
 		//将电话号码数据库copy到/data/data/package/files/
 		copyDB();
 		
+		//在桌面创建快捷图标
+		installShortCut();
+		
 		boolean isUpdate = sp.getBoolean("update", false);
 		if (isUpdate) {
 			//检查是否需要升级
@@ -121,6 +126,37 @@ public class SplashActivity extends Activity {
 		view.startAnimation(aa);
 	}
 	
+	/**
+	 * 创建快捷图标
+	 */
+	private void installShortCut() {
+		//判断是否创建过桌面图标
+		boolean isShortcut = sp.getBoolean("shortcut", false);
+		if (isShortcut) {
+			return;
+		}
+		
+		Editor edit = sp.edit();
+		
+		Intent intent = new Intent();
+		intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+		intent.putExtra(Intent.EXTRA_SHORTCUT_ICON,
+				BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+		intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "手机管家");
+		
+		//点击桌面图标对应意图
+		Intent shortcutIntent = new Intent();
+		shortcutIntent.setAction("android.intent.action.MAIN");
+		shortcutIntent.addCategory("android.intent.category.LAUNCHER");
+		shortcutIntent.setClassName(getPackageName(), "com.mobilesafe.app.SplashActivity");
+		intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, shortcutIntent);
+		//发送广播,在桌面安装图标
+		sendBroadcast(intent);
+		
+		edit.putBoolean("shortcut", true);
+		edit.commit();
+	}
+
 	//将电话号码数据库copy到/data/data/package/files/
 	private void copyDB() {
 		File file = new File(getFilesDir(), "address.db");
