@@ -6,9 +6,9 @@
     android:background="#424242"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="@dimen/activity_title_height"
         android:background="#b500b5"
         android:orientation="vertical" >
 
@@ -19,8 +19,8 @@
             android:orientation="horizontal" >
 
             <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/activity_title_back_button_width"
+                android:layout_height="@dimen/activity_title_back_button_height"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/back"
@@ -32,16 +32,16 @@
                 android:gravity="center"
                 android:text="高级工具"
                 android:textColor="#ffffff"
-                android:textSize="15sp" />
+                android:textSize="@dimen/activity_title_textsize" />
         </LinearLayout>
 
         <ImageView
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_gravity="center"
+            android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
             android:src="@drawable/atools" />
-    </LinearLayout>
+    </RelativeLayout>
     
     <ui.AtoolsItemView
         android:id="@+id/aiv_find_number"

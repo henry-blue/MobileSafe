@@ -13,6 +13,8 @@ public class SlideMenuView extends HorizontalScrollView {
     private int mHalfMenuWidth;
     private int mMenuWidth;
     private boolean once;
+    private boolean isOpened;
+    private OnMenuViewListener menuViewListener; 
     
     public SlideMenuView(Context context) {
        this(context, null);
@@ -28,9 +30,52 @@ public class SlideMenuView extends HorizontalScrollView {
         this.setHorizontalScrollBarEnabled(false);
 
     }
-
+    
+    /**
+     * 还原位置
+     */
     public void restorePosition() {
         this.scrollTo(0, 0);
+    }
+    
+    /**
+     * 判断菜单项是否打开
+     * @return 菜单项是否打开
+     */
+    public boolean isOpenMenued() {
+        return isOpened;
+    }
+    
+    /**
+     * 打开菜单项
+     */
+    public void openMenuView() {
+        if (isOpened) {
+            return;
+        }
+        this.smoothScrollTo(mScreenWidth + mMenuWidth, 0);
+        isOpened = true;
+    }
+    
+    /**
+     * 关闭菜单项
+     */
+    public void closeMenuView() {
+        if (isOpened) {
+            this.smoothScrollTo(0, 0);
+            isOpened = false;
+        }
+    }
+    
+    /**
+     * 切换菜单状态
+     */
+    public void toggle() {
+        if (isOpened) {
+            closeMenuView();
+        } else {
+            openMenuView();
+        }
     }
     
     @Override
@@ -41,8 +86,9 @@ public class SlideMenuView extends HorizontalScrollView {
             ViewGroup menu = (ViewGroup) wrapper.getChildAt(1);
             content.getLayoutParams().width = mScreenWidth;
             mMenuWidth = menu.getLayoutParams().width;
+            mHalfMenuWidth = mMenuWidth / (menu.getChildCount());
         }
-        mHalfMenuWidth = mMenuWidth / 2;
+        
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -54,17 +100,22 @@ public class SlideMenuView extends HorizontalScrollView {
             once = true;
         }
     }
-
+    
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX();
                 if (scrollX >= mHalfMenuWidth) {
-                    scrollTo(mScreenWidth + mMenuWidth, 0);
+                    //模拟器上可能没效果
+                    this.smoothScrollTo(mScreenWidth + mMenuWidth, 0);
+                    isOpened = true;
+                    menuViewListener.onMenuOpened(isOpened);
                     return false;
                 } else {
-                    scrollTo(0, 0);
+                    this.smoothScrollTo(0, 0);
+                    isOpened = false;
+                    menuViewListener.onMenuOpened(isOpened);
                     return false;
                 }
             default:
@@ -72,5 +123,12 @@ public class SlideMenuView extends HorizontalScrollView {
         }
         return super.onTouchEvent(ev);
     }
-
+ 
+    public void setOnMenuViewScrollListener(OnMenuViewListener listener) {
+        this.menuViewListener = listener;
+    }
+    
+    public interface OnMenuViewListener {
+        void onMenuOpened(boolean isOpened);
+    }
 }

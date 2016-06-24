@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ui.SlideMenuView;
+import ui.SlideMenuView.OnMenuViewListener;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -12,11 +13,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.StatFs;
 import android.text.format.Formatter;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,6 +52,8 @@ public class AppManagerActivity extends BaseAcitivity {
 
     private LinearLayout ll_loading;
     private MyAapater adapter;
+
+    private SlideMenuView oldMenuViewOpened;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,21 +103,22 @@ public class AppManagerActivity extends BaseAcitivity {
                 }
             }
         });
+
     }
 
-	private void fillData() {
-		ll_loading.setVisibility(View.VISIBLE);
-		if (appInfos != null) {
-			appInfos.clear();
-		}
-		if (userInfos != null) {
-			userInfos.clear();
-		}
-		if (sysInfos != null) {
+    private void fillData() {
+        ll_loading.setVisibility(View.VISIBLE);
+        if (appInfos != null) {
+            appInfos.clear();
+        }
+        if (userInfos != null) {
+            userInfos.clear();
+        }
+        if (sysInfos != null) {
 
-			sysInfos.clear();
-		}
-    	
+            sysInfos.clear();
+        }
+
         // 获取程序安装的所有程序
         new Thread() {
             public void run() {
@@ -136,7 +145,7 @@ public class AppManagerActivity extends BaseAcitivity {
                 });
             }
         }.start();
-	}
+    }
 
     @SuppressWarnings("deprecation")
     private long getAvailMemory(String path) {
@@ -159,13 +168,13 @@ public class AppManagerActivity extends BaseAcitivity {
             if (position == 0) {
                 TextView tv = new TextView(AppManagerActivity.this);
                 tv.setTextColor(Color.WHITE);
-                tv.setBackgroundColor(Color.parseColor("#212121"));
+                tv.setBackgroundColor(Color.parseColor("#88212121"));
                 tv.setText("用户程序 ( " + userInfos.size() + " )");
                 return tv;
             } else if (position == (userInfos.size() + 1)) {
                 TextView tv = new TextView(AppManagerActivity.this);
                 tv.setTextColor(Color.WHITE);
-                tv.setBackgroundColor(Color.parseColor("#212121"));
+                tv.setBackgroundColor(Color.parseColor("#88212121"));
                 tv.setText("系统程序 ( " + sysInfos.size() + " )");
                 return tv;
             } else if (position <= userInfos.size()) { // 用户程序
@@ -194,9 +203,12 @@ public class AppManagerActivity extends BaseAcitivity {
                         .findViewById(R.id.iv_app_icon);
                 holder.smv_item = (SlideMenuView) view
                         .findViewById(R.id.smv_item);
-                holder.ll_share = (LinearLayout) view.findViewById(R.id.ll_share);
-                holder.ll_start = (LinearLayout) view.findViewById(R.id.ll_start);
-                holder.ll_delete = (LinearLayout) view.findViewById(R.id.ll_delete);
+                holder.ll_share = (LinearLayout) view
+                        .findViewById(R.id.ll_share);
+                holder.ll_start = (LinearLayout) view
+                        .findViewById(R.id.ll_start);
+                holder.ll_delete = (LinearLayout) view
+                        .findViewById(R.id.ll_delete);
                 view.setTag(holder);
             }
 
@@ -207,31 +219,47 @@ public class AppManagerActivity extends BaseAcitivity {
             } else {
                 holder.tv_location.setText("外部设备");
             }
-            //分享按钮的点击相应事件
+            // 分享按钮的点击相应事件
             holder.ll_share.setOnClickListener(new OnClickListener() {
-                
+
                 @Override
                 public void onClick(View view) {
                     shareTheApp(appInfo, holder.smv_item);
                 }
             });
-            //启动按钮的点击相应事件
+            // 启动按钮的点击相应事件
             holder.ll_start.setOnClickListener(new OnClickListener() {
-                
+
                 @Override
                 public void onClick(View view) {
-                	startTheApp(appInfo, holder.smv_item);
+                    startTheApp(appInfo, holder.smv_item);
                 }
             });
-            //删除按钮的点击事件
+            // 删除按钮的点击事件
             holder.ll_delete.setOnClickListener(new OnClickListener() {
-                
+
                 @Override
                 public void onClick(View view) {
-                	deleteTheApp(appInfo, holder.smv_item);
+                    deleteTheApp(appInfo, holder.smv_item);
                 }
             });
-            
+            // 设置打开菜单项监听器, 如果之前有打开的菜单项将其关闭
+            holder.smv_item
+                    .setOnMenuViewScrollListener(new OnMenuViewListener() {
+
+                        @Override
+                        public void onMenuOpened(boolean isOpened) {
+                            if (oldMenuViewOpened != null
+                                    && oldMenuViewOpened.isOpenMenued()
+                                    && oldMenuViewOpened != holder.smv_item) {
+                                oldMenuViewOpened.closeMenuView();
+                            }
+                            if (isOpened) {
+                                oldMenuViewOpened = holder.smv_item;
+                            }
+                        }
+                    });
+
             return view;
         }
 
@@ -246,54 +274,56 @@ public class AppManagerActivity extends BaseAcitivity {
         }
 
     }
-    
-    //分享应用
-	private void shareTheApp(AppInfo appInfo, SlideMenuView smv_item) {
-		smv_item.restorePosition();
-		Intent intent = new Intent();
-		intent.setAction("android.intent.action.SEND");
-		intent.addCategory(Intent.CATEGORY_DEFAULT);
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_TEXT, "推荐使用一款软件:" + appInfo.getAppName());
-		startActivity(intent);
-	}
-	
-	//启动应用
-	private void startTheApp(AppInfo appInfo, SlideMenuView smv_item) {
-		smv_item.restorePosition();
-		PackageManager pm = getPackageManager();
-//		//获取所有可以启动的应用
-//		Intent intent = new Intent();
-//		intent.setAction("android.intent.action.MAIN");
-//		intent.addCategory("android.intent.category.LAUNCHER");
-//		List<ResolveInfo> activities = pm.queryIntentActivities(intent, PackageManager.GET_INTENT_FILTERS);
-		Intent intentForPackage = pm.getLaunchIntentForPackage(appInfo.getPackageName());
-		if (intentForPackage != null) {
-		startActivity(intentForPackage);
-		} else {
-			Toast.makeText(AppManagerActivity.this, 
-					"不能启动此应用", Toast.LENGTH_SHORT).show();
-		}
-	}
-	
-	//卸载应用
-	private void deleteTheApp(AppInfo appInfo, SlideMenuView smv_item) {
-		smv_item.restorePosition();
-		if (!appInfo.isUserApp()) {
-			Toast.makeText(AppManagerActivity.this, 
-					"系统应用只有获取root权限才能卸载", Toast.LENGTH_SHORT).show();
-			//执行linux指令
-            //Runtime.getRuntime().exec("rm -r xxx");
-			return;
-		}
+
+    // 分享应用
+    private void shareTheApp(AppInfo appInfo, SlideMenuView smv_item) {
+        smv_item.restorePosition();
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.SEND");
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "推荐使用一款软件:" + appInfo.getAppName());
+        startActivity(intent);
+    }
+
+    // 启动应用
+    private void startTheApp(AppInfo appInfo, SlideMenuView smv_item) {
+        smv_item.restorePosition();
+        PackageManager pm = getPackageManager();
+        // //获取所有可以启动的应用
+        // Intent intent = new Intent();
+        // intent.setAction("android.intent.action.MAIN");
+        // intent.addCategory("android.intent.category.LAUNCHER");
+        // List<ResolveInfo> activities = pm.queryIntentActivities(intent,
+        // PackageManager.GET_INTENT_FILTERS);
+        Intent intentForPackage = pm.getLaunchIntentForPackage(appInfo
+                .getPackageName());
+        if (intentForPackage != null) {
+            startActivity(intentForPackage);
+        } else {
+            Toast.makeText(AppManagerActivity.this, "不能启动此应用",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // 卸载应用
+    private void deleteTheApp(AppInfo appInfo, SlideMenuView smv_item) {
+        smv_item.restorePosition();
+        if (!appInfo.isUserApp()) {
+            Toast.makeText(AppManagerActivity.this, "系统应用只有获取root权限才能卸载",
+                    Toast.LENGTH_SHORT).show();
+            // 执行linux指令
+            // Runtime.getRuntime().exec("rm -r xxx");
+            return;
+        }
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         intent.setAction("android.intent.action.DELETE");
         intent.addCategory("android.intent.category.DEFAULT");
         intent.setData(Uri.parse("package:" + appInfo.getPackageName()));
         startActivityForResult(intent, 0);
-	}
-	
+    }
+
     static class ViewHolder {
         TextView tv_name;
         TextView tv_location;
@@ -306,10 +336,11 @@ public class AppManagerActivity extends BaseAcitivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	//刷新界面
-    	fillData();
-    	super.onActivityResult(requestCode, resultCode, data);
+        // 刷新界面
+        fillData();
+        super.onActivityResult(requestCode, resultCode, data);
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

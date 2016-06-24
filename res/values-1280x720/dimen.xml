@@ -3,4 +3,8 @@
     <dimen name="main_activity_title_height" >260dp</dimen>
     <dimen name="main_activity_title_textsize" >18sp</dimen>
     <dimen name="main_activity_gridview_item_padding">24dp</dimen>
+    <dimen name="activity_title_height">220dp</dimen>
+        <dimen name="activity_title_back_button_width">30dp</dimen>
+     <dimen name="activity_title_back_button_height">23dp</dimen>
+     <dimen name="activity_title_textsize">18sp</dimen>
 </resources>
