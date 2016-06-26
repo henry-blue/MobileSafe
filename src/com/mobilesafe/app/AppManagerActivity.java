@@ -168,13 +168,13 @@ public class AppManagerActivity extends BaseAcitivity {
             if (position == 0) {
                 TextView tv = new TextView(AppManagerActivity.this);
                 tv.setTextColor(Color.WHITE);
-                tv.setBackgroundColor(Color.parseColor("#88212121"));
+                tv.setBackgroundColor(Color.parseColor("#77212121"));
                 tv.setText("用户程序 ( " + userInfos.size() + " )");
                 return tv;
             } else if (position == (userInfos.size() + 1)) {
                 TextView tv = new TextView(AppManagerActivity.this);
                 tv.setTextColor(Color.WHITE);
-                tv.setBackgroundColor(Color.parseColor("#88212121"));
+                tv.setBackgroundColor(Color.parseColor("#77212121"));
                 tv.setText("系统程序 ( " + sysInfos.size() + " )");
                 return tv;
             } else if (position <= userInfos.size()) { // 用户程序
@@ -324,7 +324,7 @@ public class AppManagerActivity extends BaseAcitivity {
         startActivityForResult(intent, 0);
     }
 
-    static class ViewHolder {
+    class ViewHolder {
         TextView tv_name;
         TextView tv_location;
         ImageView iv_icon;

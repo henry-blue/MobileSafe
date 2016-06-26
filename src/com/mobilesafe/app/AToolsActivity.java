@@ -20,6 +20,7 @@ public class AToolsActivity extends BaseAcitivity implements OnClickListener {
 	private AtoolsItemView findNumber;
 	private AtoolsItemView smsBackup;
 	private AtoolsItemView smsRestore;
+	private AtoolsItemView softLock;
 	private ProgressDialog pb;
 
 	@Override
@@ -35,6 +36,9 @@ public class AToolsActivity extends BaseAcitivity implements OnClickListener {
 
 		smsRestore = (AtoolsItemView) findViewById(R.id.aiv_sms_restore);
 		smsRestore.setOnClickListener(this);
+		
+		softLock = (AtoolsItemView) findViewById(R.id.aiv_soft_lock);
+		softLock.setOnClickListener(this);
 	}
 
 	@Override
@@ -49,9 +53,19 @@ public class AToolsActivity extends BaseAcitivity implements OnClickListener {
 		case R.id.aiv_sms_restore: // 短信还原
 			smsRestore();
 			break;
+		case R.id.aiv_soft_lock: //软件锁
+			enterSoftLockPage();
+			break;
 		default:
 			break;
 		}
+	}
+
+	//进入软件锁界面
+	private void enterSoftLockPage() {
+		Intent intent = new Intent(AToolsActivity.this, SoftwareLockActivity.class);
+		startActivity(intent);
+		overridePendingTransition(R.anim.tran_in, R.anim.tran_out);
 	}
 
 	/**

@@ -103,6 +103,9 @@ public class MainActivity extends Activity {
                 case function.APP_MANAGER: //进入软件管理
                 	enterIndexPage(AppManagerActivity.class);
                 	break;
+                case function.TASK_MANAGER:
+                	enterIndexPage(TaskManagerActivity.class);
+                	break;
                 default:
                     break;
                 }

@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_title_height"
-        android:background="#8000ff"
+        android:background="#ffaec9"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="软件管理"
+                android:text="进程管理"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/activity_title_textsize" />
         </LinearLayout>
@@ -39,21 +39,21 @@
             android:layout_height="55dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp"
-            android:src="@drawable/app" />
+            android:src="@drawable/taskmanager" />
     </RelativeLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
-        android:background="#44ffffff" />
+        android:background="#88ffffff" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#8000ff" >
+        android:background="#ffaec9" >
 
         <TextView
-            android:id="@+id/tv_rom"
+            android:id="@+id/tv_process_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -61,20 +61,21 @@
             android:textColor="#ffffff" />
 
         <TextView
-            android:id="@+id/tv_sdcard"
+            android:id="@+id/tv_mem_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="2dp"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="2dp"
             android:textColor="#ffffff" />
     </RelativeLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_weight="2" >
 
         <LinearLayout
-            android:id="@+id/ll_loading_flag"
+            android:id="@+id/ll_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -88,23 +89,61 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="正在加载程序信息..."
+                android:text="正在加载进程信息..."
                 android:textColor="#ffffff" />
         </LinearLayout>
 
         <ListView
-            android:overScrollMode="never"
-            android:fastScrollEnabled="true"
-            android:id="@+id/lv_my_apps"
+            android:id="@+id/lv_tasks_manager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        
-        <TextView 
-            android:id="@+id/tv_show_app_count"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:overScrollMode="never" />
+
+        <TextView
+            android:id="@+id/tv_show_task_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:background="#313131" />
+            android:background="#313131"
+            android:textColor="#ffffff" />
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/bt_select_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="全选"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/bt_unselect_all"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="反选"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/bt_clean"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="清理"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/bt_setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="设置"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#424242"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#8000ff"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="@dimen/activity_title_back_button_width"
+            android:layout_height="@dimen/activity_title_back_button_height"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/back"
+            android:onClick="backOut" />
+
+        <Button
+            android:id="@+id/btn_no_lock"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="50dp"
+            android:background="#8000ff"
+            android:text="未加锁"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btn_locked"
+            android:layout_width="80dp"
+            android:layout_height="45dp"
+            android:background="#8000ff"
+            android:text="已加锁"
+            android:textColor="#ffffff"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/ll_loading_soft"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="正在加载程序..."
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lv_all_apps"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:overScrollMode="never" />
+
+        <TextView
+            android:id="@+id/tv_show_nolock_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#313131"
+            android:textColor="#ffffff" />
+    </FrameLayout>
+
+</LinearLayout>
