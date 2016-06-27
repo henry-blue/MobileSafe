@@ -70,6 +70,7 @@
         <activity android:name="com.mobilesafe.app.TaskManagerActivity" />
         <activity android:name="com.mobilesafe.app.TaskSettingAcitivity" />
         <activity android:name="com.mobilesafe.app.SoftwareLockActivity"/>
+        <activity android:name="com.mobilesafe.app.DataManagerActivity" />
 
         <service android:name="service.GPSService" />
         <service android:name="service.AddressService" />

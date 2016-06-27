@@ -106,6 +106,9 @@ public class MainActivity extends Activity {
                 case function.TASK_MANAGER:
                 	enterIndexPage(TaskManagerActivity.class);
                 	break;
+                case function.NETWORK_MANAGER:
+                	enterIndexPage(DataManagerActivity.class);
+                	break;
                 default:
                     break;
                 }

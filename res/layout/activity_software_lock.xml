@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#8000ff"
+        android:background="#b500b5"
         android:orientation="horizontal" >
 
         <Button
@@ -24,7 +24,7 @@
             android:layout_width="80dp"
             android:layout_height="45dp"
             android:layout_marginLeft="50dp"
-            android:background="#8000ff"
+            android:background="#b500b5"
             android:text="未加锁"
             android:textColor="#ffffff"
             android:textSize="17sp" />
@@ -33,7 +33,7 @@
             android:id="@+id/btn_locked"
             android:layout_width="80dp"
             android:layout_height="45dp"
-            android:background="#8000ff"
+            android:background="#b500b5"
             android:text="已加锁"
             android:textColor="#ffffff"
             android:textSize="17sp" />
