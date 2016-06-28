@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
             R.drawable.settings };
 
     private static String[] bgColors = { "#65b3cb", "#b3d030", "#8000ff",
-            "#ffaec9", "#42bbb4", "#f99877", "#e9b438", "#b500b5", "#177ab1" };
+            "#3f51b5", "#42bbb4", "#f99877", "#e9b438", "#b500b5", "#177ab1" };
 
     private GridView mGridView;
     private SharedPreferences sp;

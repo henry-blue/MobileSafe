@@ -2,27 +2,51 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp" >
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp" >
 
     <ImageView
         android:id="@+id/iv_data_icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_centerVertical="true"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_launcher" />
 
     <TextView
         android:id="@+id/tv_data_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
         android:layout_toRightOf="@id/iv_data_icon"
-        android:layout_centerVertical="true"
+        android:text="baominghh"
         android:textColor="#ffffff"
         android:textSize="17dp" />
+
+    <TextView
+        android:id="@+id/tv_tx_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_data_name"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/iv_data_icon"
+        android:text="上传数据"
+        android:textColor="#999999"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tv_rx_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_data_name"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@id/tv_tx_data"
+        android:text="下载数据"
+        android:textColor="#999999"
+        android:textSize="15dp" />
 
 </RelativeLayout>

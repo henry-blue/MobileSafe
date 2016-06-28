@@ -15,6 +15,25 @@ public class AppInfo {
 	private String packageName;
 	private boolean isInstallRom;
 	private boolean isUserApp;
+	private long txData;
+	private long rxData;
+
+	
+	public long getTxData() {
+		return txData;
+	}
+
+	public void setTxData(long txData) {
+		this.txData = txData;
+	}
+
+	public long getRxData() {
+		return rxData;
+	}
+
+	public void setRxData(long rxData) {
+		this.rxData = rxData;
+	}
 
 	public Drawable getAppIcon() {
 		return appIcon;

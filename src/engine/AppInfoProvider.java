@@ -1,5 +1,6 @@
 package engine;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.TrafficStats;
 import domain.AppInfo;
 
 /**
@@ -47,6 +49,12 @@ public class AppInfoProvider {
 				//存在外存储设备
 				appInfo.setInstallRom(false);
 			}
+			
+			int uid = info.applicationInfo.uid;
+			long txBytes = TrafficStats.getUidTxBytes(uid); //上传的数据
+			long rxBytes = TrafficStats.getUidRxBytes(uid); //下载的数据
+			appInfo.setRxData(rxBytes);
+			appInfo.setTxData(txBytes);
 			appInfos.add(appInfo);
 		}
 		

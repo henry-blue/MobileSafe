@@ -42,6 +42,12 @@
             android:src="@drawable/netmanager" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_show_all_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -66,18 +72,18 @@
         </LinearLayout>
 
         <ListView
-            android:overScrollMode="never"
-            android:fastScrollEnabled="true"
             android:id="@+id/lv_data_apps"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        
-        <TextView 
+            android:layout_height="match_parent"
+            android:fastScrollEnabled="true"
+            android:overScrollMode="never" />
+
+        <TextView
             android:id="@+id/tv_show_data_count"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#ffffff"
-            android:background="#313131" />
+            android:background="#313131"
+            android:textColor="#ffffff" />
     </FrameLayout>
 
 </LinearLayout>

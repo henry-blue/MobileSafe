@@ -7,7 +7,9 @@ import java.util.List;
 import domain.AppInfo;
 import engine.AppInfoProvider;
 import android.graphics.Color;
+import android.net.TrafficStats;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -19,10 +21,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.AbsListView.OnScrollListener;
 
+/**
+ * 流量统计界面
+ * @author Administrator
+ *
+ */
 public class DataManagerActivity extends BaseAcitivity {
 
 	private LinearLayout ll_loading;
 	private TextView tv_satus;
+	private TextView tv_showDatas; 
 	private ListView lv_app_manager;
 	private MyAapater adapter;
 	protected List<AppInfo> appInfos;
@@ -42,8 +50,13 @@ public class DataManagerActivity extends BaseAcitivity {
 		
 		ll_loading = (LinearLayout) findViewById(R.id.ll_data_loading);
 		tv_satus = (TextView) findViewById(R.id.tv_show_data_count);
+		tv_showDatas = (TextView) findViewById(R.id.tv_show_all_data);
 		lv_app_manager = (ListView) findViewById(R.id.lv_data_apps);
 		adapter = new MyAapater();
+		long totalRxBytes = TrafficStats.getTotalRxBytes();
+		long totalTxBytes = TrafficStats.getTotalTxBytes();
+		tv_showDatas.setText("上传总流量:" + Formatter.formatFileSize(this, totalTxBytes) + 
+				"    下载总流量:" + Formatter.formatFileSize(this, totalRxBytes));
 		fillData();
 		
 		lv_app_manager.setOnScrollListener(new OnScrollListener() {
@@ -82,6 +95,8 @@ public class DataManagerActivity extends BaseAcitivity {
 						sysInfos.add(info);
 					}
 				}
+				sort(userInfos);
+				sort(sysInfos);
 				
 				runOnUiThread(new Runnable() {
 
@@ -99,6 +114,15 @@ public class DataManagerActivity extends BaseAcitivity {
 		}.start();
 	}
 	
+	protected void sort(List<AppInfo> infos) {
+//		Collections.sort(infos, new Comparator<AppInfo>() {
+//            public int compare(AppInfo arg0, AppInfo arg1) {
+//                return (arg0.getTxData() + arg0.getRxData()).compareTo((arg1.getTxData() + arg1.getRxData()));
+//            }
+//        });
+		
+	}
+
 	private class MyAapater extends BaseAdapter {
 
         @Override
@@ -143,10 +167,13 @@ public class DataManagerActivity extends BaseAcitivity {
                 holder.iv_icon = (ImageView) view
                         .findViewById(R.id.iv_data_icon);
                 view.setTag(holder);
+                holder.tv_txData = (TextView) view.findViewById(R.id.tv_tx_data);
+                holder.tv_rxData = (TextView) view.findViewById(R.id.tv_rx_data);
             }
             holder.tv_name.setText(appInfo.getAppName());
             holder.iv_icon.setImageDrawable(appInfo.getAppIcon());
-         
+            holder.tv_txData.setText("上传数据:" + Formatter.formatFileSize(DataManagerActivity.this, appInfo.getTxData()));
+            holder.tv_rxData.setText("下载数据:" + Formatter.formatFileSize(DataManagerActivity.this, appInfo.getRxData()));
             return view;
         }
 
@@ -165,6 +192,8 @@ public class DataManagerActivity extends BaseAcitivity {
     class ViewHolder {
     	ImageView iv_icon;
         TextView tv_name;
+        TextView tv_txData;
+        TextView tv_rxData;
     }
 	
 }
