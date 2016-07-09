@@ -33,6 +33,7 @@
             android:id="@+id/btn_locked"
             android:layout_width="80dp"
             android:layout_height="45dp"
+            android:layout_marginLeft="5dp"
             android:background="#b500b5"
             android:text="已加锁"
             android:textColor="#ffffff"

@@ -100,7 +100,9 @@ public class SplashActivity extends Activity {
 		sp = getSharedPreferences("config", MODE_PRIVATE);
 		
 		//将电话号码数据库copy到/data/data/package/files/
-		copyDB();
+		copyDB("address.db");
+		//将病毒数据库copy到/files/
+		copyDB("antivirus.db");
 		
 		//在桌面创建快捷图标
 		installShortCut();
@@ -157,15 +159,15 @@ public class SplashActivity extends Activity {
 		edit.commit();
 	}
 
-	//将电话号码数据库copy到/data/data/package/files/
-	private void copyDB() {
-		File file = new File(getFilesDir(), "address.db");
+	//数据库copy到/data/data/package/files/
+	private void copyDB(String filename) {
+		File file = new File(getFilesDir(), filename);
 		if (file.exists() && file.length() > 0) {
 			return;
 		}
 
 		try {
-			InputStream is = getAssets().open("address.db");
+			InputStream is = getAssets().open(filename);
 			FileOutputStream fos = new FileOutputStream(file);
 			byte[] buffer = new byte[1024];
 			int len = 0;

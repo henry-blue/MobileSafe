@@ -12,6 +12,7 @@
     <issue id="HardcodedText">
         <ignore path="res/layout/activity_select_contact.xml" />
         <ignore path="res/layout/activity_setting.xml" />
+        <ignore path="res/menu/main.xml" />
     </issue>
     <issue id="Orientation">
         <ignore path="res/layout/cleancache_item_view.xml" />

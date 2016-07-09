@@ -115,6 +115,7 @@ public class SoftwareLockActivity extends BaseAcitivity implements OnClickListen
 			
 			break;
 		case R.id.btn_locked:
+			
 			break;
 		default:
 			break;

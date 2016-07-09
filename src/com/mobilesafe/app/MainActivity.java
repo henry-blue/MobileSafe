@@ -35,24 +35,24 @@ public class MainActivity extends Activity {
         int MOBILE_SAFE = 0;
         int CALL_MSG_SAFE = 1;
         int APP_MANAGER = 2;
-        int TASK_MANAGER = 3;
+        int MOBILE_TROJAN = 3;
         int NETWORK_MANAGER = 4;
-        int MOBILE_TROJAN = 5;
+        int TASK_MANAGER = 5;
         int SYS_OPTIMIZE = 6;
         int ATOOLS = 7;
         int MOBILE_SETTING = 8;
     }
 
-    private static String[] names = { "手机防盗", "通讯卫士", "软件管理", "进程管理", "流量统计",
-            "手机杀毒", "缓存清理", "高级工具", "设置中心" };
+    private static String[] names = { "手机防盗", "通讯卫士", "软件管理", "手机杀毒", "流量统计",
+            "进程管理", "缓存清理", "高级工具", "设置中心" };
 
     private static int[] ids = { R.drawable.safe, R.drawable.callmsgsafe,
-            R.drawable.app, R.drawable.taskmanager, R.drawable.netmanager,
-            R.drawable.trojan, R.drawable.sysoptimize, R.drawable.atools,
+            R.drawable.app, R.drawable.trojan, R.drawable.netmanager,
+            R.drawable.taskmanager, R.drawable.sysoptimize, R.drawable.atools,
             R.drawable.settings };
 
     private static String[] bgColors = { "#65b3cb", "#b3d030", "#8000ff",
-            "#3f51b5", "#42bbb4", "#f99877", "#e9b438", "#b500b5", "#177ab1" };
+            "#3f51b5", "#42bbb4", "#12c700", "#e9b438", "#b500b5", "#177ab1" };
 
     private GridView mGridView;
     private SharedPreferences sp;
@@ -103,11 +103,14 @@ public class MainActivity extends Activity {
                 case function.APP_MANAGER: //进入软件管理
                 	enterIndexPage(AppManagerActivity.class);
                 	break;
-                case function.TASK_MANAGER:
+                case function.TASK_MANAGER: //进程管理
                 	enterIndexPage(TaskManagerActivity.class);
                 	break;
-                case function.NETWORK_MANAGER:
+                case function.NETWORK_MANAGER: //流量统计
                 	enterIndexPage(DataManagerActivity.class);
+                	break;
+                case function.MOBILE_TROJAN: //手机杀毒
+                	enterIndexPage(AntiVirusActivity.class);
                 	break;
                 default:
                     break;

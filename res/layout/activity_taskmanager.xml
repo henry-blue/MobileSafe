@@ -8,19 +8,22 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_title_height"
-        android:background="#3f51b5"
+        android:background="#12c700"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal" >
+            android:layout_gravity="center_vertical" >
 
             <Button
+                android:id="@+id/btn_back_top"
                 android:layout_width="@dimen/activity_title_back_button_width"
                 android:layout_height="@dimen/activity_title_back_button_height"
-                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/back"
                 android:onClick="backOut" />
@@ -28,11 +31,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
+                android:layout_toRightOf="@id/btn_back_top"
                 android:gravity="center"
                 android:text="进程管理"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/activity_title_textsize" />
-        </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_menu"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/more" />
+        </RelativeLayout>
 
         <ImageView
             android:layout_width="55dp"
@@ -50,7 +62,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3f51b5" >
+        android:alpha="0.85"
+        android:background="#12c700" >
 
         <TextView
             android:id="@+id/tv_process_count"
@@ -107,43 +120,5 @@
             android:background="#313131"
             android:textColor="#ffffff" />
     </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/bt_select_all"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="全选"
-            android:textColor="#ffffff" />
-
-        <Button
-            android:id="@+id/bt_unselect_all"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="反选"
-            android:textColor="#ffffff" />
-
-        <Button
-            android:id="@+id/bt_clean"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="清理"
-            android:textColor="#ffffff" />
-
-        <Button
-            android:id="@+id/bt_setting"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="设置"
-            android:textColor="#ffffff" />
-    </LinearLayout>
 
 </LinearLayout>

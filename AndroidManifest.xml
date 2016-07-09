@@ -61,7 +61,8 @@
         <activity android:name="com.mobilesafe.app.Setup3Activity" />
         <activity android:name="com.mobilesafe.app.Setup4Activity" />
         <activity android:name="com.mobilesafe.app.SelectContactActivity" />
-        <activity android:name="com.mobilesafe.app.CleanCacheActivity" />
+        <activity android:name="com.mobilesafe.app.CleanCacheActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
         <activity android:name="com.mobilesafe.app.AToolsActivity" />
         <activity android:name="utils.deviceUtil" />
         <activity android:name="com.mobilesafe.app.NumberAddressQueryActivity" />
@@ -71,6 +72,8 @@
         <activity android:name="com.mobilesafe.app.TaskSettingAcitivity" />
         <activity android:name="com.mobilesafe.app.SoftwareLockActivity"/>
         <activity android:name="com.mobilesafe.app.DataManagerActivity" />
+        <activity android:name="com.mobilesafe.app.AntiVirusActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
 
         <service android:name="service.GPSService" />
         <service android:name="service.AddressService" />

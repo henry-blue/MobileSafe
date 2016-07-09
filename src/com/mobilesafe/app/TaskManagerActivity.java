@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -23,13 +24,14 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import domain.TaskInfo;
 import engine.TaskInfoPrvider;
 
-public class TaskManagerActivity extends BaseAcitivity implements OnClickListener {
+public class TaskManagerActivity extends BaseAcitivity {
 
 	private TextView tv_process_count;
 	private TextView tv_mem_info;
@@ -42,12 +44,8 @@ public class TaskManagerActivity extends BaseAcitivity implements OnClickListene
 	private MyAapater adapter;
 	private TextView tv_task_status;
 	
-	private Button bt_select_all;
-	private Button bt_unselect_all;
-	private Button bt_clean;
-	private Button bt_setting;
+	private Button btn_menu;
 	
-	private LinearLayout ll_button;
 	private int processCount;
 	private long availMem;
 	private SharedPreferences sp;
@@ -61,16 +59,15 @@ public class TaskManagerActivity extends BaseAcitivity implements OnClickListene
 		tv_process_count = (TextView) findViewById(R.id.tv_process_count);
 		tv_mem_info = (TextView) findViewById(R.id.tv_mem_info);
 		tv_task_status = (TextView) findViewById(R.id.tv_show_task_count);
-		ll_button = (LinearLayout) findViewById(R.id.ll_button);
+		btn_menu = (Button) findViewById(R.id.btn_menu);
 		
-		bt_select_all = (Button) findViewById(R.id.bt_select_all);
-		bt_select_all.setOnClickListener(this);
-		bt_unselect_all = (Button) findViewById(R.id.bt_unselect_all);
-		bt_unselect_all.setOnClickListener(this);
-		bt_clean = (Button) findViewById(R.id.bt_clean);
-		bt_clean.setOnClickListener(this);
-		bt_setting = (Button) findViewById(R.id.bt_setting);
-		bt_setting.setOnClickListener(this);
+		btn_menu.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				showPopMenu(btn_menu);
+			}
+		});
 		
 		setTitle();
 		
@@ -84,11 +81,6 @@ public class TaskManagerActivity extends BaseAcitivity implements OnClickListene
 			
 			@Override
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
-				if (scrollState == SCROLL_STATE_IDLE) {
-					ll_button.setVisibility(View.VISIBLE);
-				} else {
-					ll_button.setVisibility(View.GONE);
-				}
 			}
 			
 			@Override
@@ -135,6 +127,44 @@ public class TaskManagerActivity extends BaseAcitivity implements OnClickListene
 				}
 			}
 		});
+	}
+
+	protected void showPopMenu(View view) {
+		 PopupMenu popupMenu = new PopupMenu(this, view);
+		 // menu布局
+		 popupMenu.getMenuInflater().inflate(R.menu.menu_main, popupMenu.getMenu());
+		 // menu的item点击事件
+		 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+		  @Override
+		  public boolean onMenuItemClick(MenuItem item) {
+			  
+		  switch (item.getItemId()) {
+		case R.id.action_select:
+			selectAllTask();
+			break;
+		case R.id.action_inselect:
+			unSelectAllTask();
+			break;
+		case R.id.action_clean:
+			killAllTask();
+			break;
+		case R.id.action_setting:
+			enterSetting();
+			break;
+		default:
+			break;
+		}
+		  return false;
+		  }
+		 });
+		 // PopupMenu关闭事件
+		 popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+		  @Override
+		  public void onDismiss(PopupMenu menu) {
+			  menu.dismiss();
+		  }
+		 });
+		 popupMenu.show();
 	}
 
 	private void setTitle() {
@@ -259,26 +289,6 @@ public class TaskManagerActivity extends BaseAcitivity implements OnClickListene
         ImageView iv_icon;
         CheckBox cb_status;
     }
-
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.bt_select_all:
-			selectAllTask();
-			break;
-		case R.id.bt_unselect_all:
-			unSelectAllTask();
-			break;
-		case R.id.bt_clean:
-			killAllTask();
-			break;
-		case R.id.bt_setting:
-			enterSetting();
-			break;
-		default:
-			break;
-		}
-	}
 
 	/**
 	 * 选中全部

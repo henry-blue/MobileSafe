@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_title_height"
-        android:background="#12c700"
+        android:background="#3f51b5"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -29,45 +29,61 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:text="进程管理设置"
+                android:text="手机杀毒"
                 android:textColor="#ffffff"
                 android:textSize="@dimen/activity_title_textsize" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/taskmanager" />
+            android:layout_marginTop="20dp" >
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_scanner_malware" />
+
+            <ImageView
+                android:id="@+id/iv_scanning_act"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/act_scanning_03" />
+        </FrameLayout>
     </RelativeLayout>
 
-    <CheckBox
-        android:id="@+id/cb_show_system"
+    <TextView
+        android:id="@+id/tv_scan_state"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示系统进程"
+        android:alpha="0.85"
+        android:background="#3f51b5"
+        android:text="正在扫描..."
         android:textColor="#ffffff" />
 
-    <View
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#88999999" />
+        android:layout_height="match_parent"
+        android:layout_margin="8dp" >
 
-    <CheckBox
-        android:id="@+id/cb_lock_clean"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="锁屏清理进程"
-        android:textColor="#ffffff" />
+        <LinearLayout
+            android:id="@+id/ll_anti_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:orientation="vertical" >
+        </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.2dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="#88999999" />
+        <Button
+            android:id="@+id/btn_virus"
+            android:layout_width="110dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@drawable/btn_virus"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </LinearLayout>
