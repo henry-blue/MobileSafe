@@ -33,6 +33,7 @@ public class AntivirusDao {
 		}
 		cursor.close();
 		db.close();
+		
 		return result;
 	}
 }
