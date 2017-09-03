@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#424242"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_title_height"
+        android:background="#b500b5"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="@dimen/activity_title_back_button_width"
+                android:layout_height="@dimen/activity_title_back_button_height"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/back"
+                android:onClick="backOut" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="高级工具"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/activity_title_textsize" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/atools" />
+    </RelativeLayout>
+
+    <ui.AtoolsItemView
+        android:id="@+id/aiv_find_number"
+        app:content="号码归属地查询"
+        app:drawable_left="@drawable/select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ui.AtoolsItemView
+        android:id="@+id/aiv_sms_save"
+        app:drawable_left="@drawable/backup"
+        app:show_arrow="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:content="短信备份" />
+
+    <ui.AtoolsItemView
+        android:id="@+id/aiv_sms_restore"
+        app:content="短信还原"
+        app:drawable_left="@drawable/restore"
+        app:show_arrow="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ui.AtoolsItemView
+        android:id="@+id/aiv_soft_lock"
+        app:content="软件锁"
+        app:drawable_left="@drawable/soft_lock"
+        app:show_arrow="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
