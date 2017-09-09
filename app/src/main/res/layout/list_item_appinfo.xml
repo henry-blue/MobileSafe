@@ -4,7 +4,7 @@
     android:layout_height="50dp"
     android:gravity="center_vertical" >
 
-    <ui.SlideMenuView
+    <com.app.mobilesafe.ui.SlideMenuView
         android:id="@+id/smv_item"
         android:layout_width="wrap_content"
         android:layout_height="60dp" >
@@ -119,6 +119,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </ui.SlideMenuView>
+    </com.app.mobilesafe.ui.SlideMenuView>
 
 </RelativeLayout>

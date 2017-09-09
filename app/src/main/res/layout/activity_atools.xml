@@ -43,14 +43,14 @@
             android:src="@drawable/atools" />
     </RelativeLayout>
 
-    <ui.AtoolsItemView
+    <com.app.mobilesafe.ui.AtoolsItemView
         android:id="@+id/aiv_find_number"
         app:content="号码归属地查询"
         app:drawable_left="@drawable/select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ui.AtoolsItemView
+    <com.app.mobilesafe.ui.AtoolsItemView
         android:id="@+id/aiv_sms_save"
         app:drawable_left="@drawable/backup"
         app:show_arrow="false"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         app:content="短信备份" />
 
-    <ui.AtoolsItemView
+    <com.app.mobilesafe.ui.AtoolsItemView
         android:id="@+id/aiv_sms_restore"
         app:content="短信还原"
         app:drawable_left="@drawable/restore"
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ui.AtoolsItemView
+    <com.app.mobilesafe.ui.AtoolsItemView
         android:id="@+id/aiv_soft_lock"
         app:content="软件锁"
         app:drawable_left="@drawable/soft_lock"

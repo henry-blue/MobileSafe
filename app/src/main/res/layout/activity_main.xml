@@ -7,18 +7,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/main_activity_title_height"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#17cd6e"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
             android:text="手机管家"
             android:textColor="#ffffff"
             android:textSize="@dimen/main_activity_title_textsize" />
@@ -27,15 +26,16 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerInParent="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:src="@drawable/home" />
     </RelativeLayout>
 
     <GridView
         android:id="@+id/gv_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
         android:verticalSpacing="10dp" />

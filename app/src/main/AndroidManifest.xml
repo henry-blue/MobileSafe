@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.app.mobilesafe" >
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +13,8 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -33,14 +35,16 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.app.mobilesafe.SplashActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.app.mobilesafe.MainActivity" />
+        <activity android:name="com.app.mobilesafe.MainActivity"
+            android:launchMode="singleTask"/>
         <activity android:name="com.app.mobilesafe.SettingActivity" />
         <activity android:name="com.app.mobilesafe.MobileSafeActivity" />
         <activity android:name="com.app.mobilesafe.Setup1Activity" />

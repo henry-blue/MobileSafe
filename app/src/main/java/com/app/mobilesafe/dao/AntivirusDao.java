@@ -16,7 +16,7 @@ public class AntivirusDao {
 	 * @return
 	 */
 	public static boolean isVirus(String md5) {
-		String path = "/data/data/com.mobilesafe.app/files/antivirus.db";
+		String path = "/data/data/com.app.mobilesafe/files/antivirus.db";
 		boolean result = false;
 		//打开数据库
 		SQLiteDatabase db = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READONLY);

@@ -238,7 +238,7 @@ public class MainActivity extends Activity {
                     Editor edit = sp.edit();
                     edit.putString("password",
                             CommonUtil.md5EncodePassword(pwd));
-                    edit.commit();
+                    edit.apply();
                     mDialog.dismiss();
                     enterIndexPage(MobileSafeActivity.class);
 
@@ -266,7 +266,7 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-    class MyAdapter extends BaseAdapter {
+    private class MyAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
